@@ -1,0 +1,26 @@
+{
+  "name": "sketchy-map-react",
+  "version": "0.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "watchify -v -d -t [ reactify --es6 ] main.js -o compiled.js",
+    "build": "NODE_ENV=production browserify -t [ reactify --es6 ] main.js | uglifyjs > compiled.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "browser-request": "^0.3.3",
+    "material-ui": "^0.9.0",
+    "proj4": "^2.3.6",
+    "react": "^0.13.2",
+    "react-tap-event-plugin": "^0.1.7"
+  },
+  "devDependencies": {
+    "browserify": "^9.0.8",
+    "reactify": "^1.1.0",
+    "uglify-js": "^2.4.20",
+    "watchify": "^3.1.2"
+  }
+}

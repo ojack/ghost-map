@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>sketchy-maps</title>
+		<!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href='https://fonts.googleapis.com/css?family=Raleway:400,600,300' rel='stylesheet' type='text/css'>
+    	<link rel="stylesheet" href="css/normalize.css">
+       <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+  		<link rel="stylesheet" href="css/gridism.css">
+  		<link rel="stylesheet" href="css/main.css">
+    	<script src="https://fb.me/react-0.13.3.js"></script>
+    	<script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+    	<script src="js/leaflet.js" charset="utf-8"></script>
+    </head>
+    <body>
+      <!-- This script adds the Roboto font to our project. For more detail go to this site:  http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500 -->
+  <script>
+    var WebFontConfig = {
+      google: { families: [ 'Roboto:400,300,500:latin' ] }
+    };
+    (function() {
+      var wf = document.createElement('script');
+      wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+      wf.type = 'text/javascript';
+      wf.async = 'true';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wf, s);
+    })();
+  </script>
+     <div id="container"></div>
+     <script src="./compiled.js"></script>
+    </body>
+</html>

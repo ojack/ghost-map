@@ -1,0 +1,20 @@
+html, body{
+	background-color: #303030;
+}
+#map { 
+	height: 40%;
+	/*width: 90%;
+	height: 30%;*/
+	
+}
+
+#menu {
+	z-index: 20;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+}
+
+#canvas {
+	z-index: 100;
+}
