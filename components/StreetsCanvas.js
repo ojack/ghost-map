@@ -23,15 +23,18 @@ var StreetsCanvas = React.createClass({
 		console.log(this.canvas);
 	},
 	onMouseDown: function(e){
+		e.preventDefault();
 		this.streets.startDrawing({x: e.pageX, y: e.pageY});
 		this.isDrawing = true;
 	},
 	onMouseMove: function(e){
-		if(this.isDrawing){
+		e.preventDefault();
+	//	if(this.isDrawing){
 			this.streets.drawNearby({x: e.pageX, y: e.pageY}, 8);
-		}
+		//}
 	},
 	onMouseUp: function(e){
+		e.preventDefault();
 		this.isDrawing = false;
 	},
 	drawStreets: function(){

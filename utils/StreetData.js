@@ -47,6 +47,7 @@ StreetData.prototype.parseData = function(data){
     var coords = this.scaleToScreen(scaleCoords);
      var node = {
       'coords': coords,
+      'names': '',
       'scaleCoords': scaleCoords,
       'geoCoords':d,
       'links': []
@@ -60,13 +61,16 @@ StreetData.prototype.parseData = function(data){
    
     if(data[i].type=="way"){ 
       var l = data[i];    
-      /* add forward connections*/ 
+     // console.log(l);
+      /* add forward connections*/
+
       for(var j = 0; j < l.nodes.length-1; j++){
-        nodes[l.nodes[j]].links.push(l.nodes[j+1]);
+        nodes[l.nodes[j]].links.push(nodes[l.nodes[j+1]]);
+        if(l.tags.name) nodes[l.nodes[j]].name = l.tags.name;
       }
       /* add backwards connections*/
       for(var j = 1; j < l.nodes.length; j++){
-        nodes[l.nodes[j]].links.push(l.nodes[j-1]);
+        nodes[l.nodes[j]].links.push(nodes[l.nodes[j-1]]);
       }      
     }
 
@@ -120,8 +124,12 @@ StreetData.prototype.render = function(){
  // this.context.fill();
  // console.log("new render ")
     //this.context.fillStyle = 'rgba(255, 255, 255, 0.08)';
-   this.context.strokeStyle = 'rgba(255, 255, 255, 0.8)';//'#000';
+   //this.context.strokeStyle = 'rgba(255, 255, 255, 0.1)';//'#000';
  //  console.log(this.particles.length);
+ var hue = this.particles.length+180;
+ //console.log(hue);
+ this.context.strokeStyle = 'hsla('+hue*2+', 100%, 20%, 0.08)';
+ //this.context.strokeStyle = 'rgba(0, 80, 80, 0.08)';
   for(var i = this.particles.length-1; i>=0; i--){
 //   if(this.particles.length > 0){
      // var i = 0;
@@ -131,29 +139,34 @@ StreetData.prototype.render = function(){
     } else {
       //console.log("drawing particle" + i);
       //console.log(this.particles[i].pos.x);
-      this.context.beginPath();
+     if(i>0){
+        this.context.beginPath();
+      this.context.moveTo(this.particles[i].pos.x, this.particles[i].pos.y);
+        this.context.lineTo(this.particles[i-1].pos.x, this.particles[i-1].pos.y);
+     //this.context.rect(this.particles[i].pos.x, this.particles[i].pos.y,1,1);
+      //this.context.fill();
+      this.context.stroke();
+
+    }
+    
+    /*   this.context.fillStyle = 'rgba(255, 255, 255, 0.08)';
+      this.context.fillRect(this.particles[i].pos.x, this.particles[i].pos.y,2,2);*/
+    }
+    }
+      this.context.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+    for(var i = this.particles.length-1; i>=0; i--){
+//   if(this.particles.length > 0){
+     // var i = 0;
+        this.context.beginPath();
       this.context.moveTo(this.particles[i].prev.x, this.particles[i].prev.y);
         this.context.lineTo(this.particles[i].pos.x, this.particles[i].pos.y);
      //this.context.rect(this.particles[i].pos.x, this.particles[i].pos.y,1,1);
       //this.context.fill();
       this.context.stroke();
-    /*   this.context.fillStyle = 'rgba(255, 255, 255, 0.08)';
-      this.context.fillRect(this.particles[i].pos.x, this.particles[i].pos.y,2,2);*/
-    }
-    }
-     this.context.strokeStyle = 'rgba(0, 80, 80, 0.08)';
-    for(var i = this.particles.length-2; i>=0; i--){
-//   if(this.particles.length > 0){
-     // var i = 0;
     
       //console.log("drawing particle" + i);
       //console.log(this.particles[i].pos.x);
-      this.context.beginPath();
-      this.context.moveTo(this.particles[i].pos.x, this.particles[i].pos.y);
-        this.context.lineTo(this.particles[i+1].pos.x, this.particles[i+1].pos.y);
-     //this.context.rect(this.particles[i].pos.x, this.particles[i].pos.y,1,1);
-      //this.context.fill();
-      this.context.stroke();
+    
     /*   this.context.fillStyle = 'rgba(255, 255, 255, 0.08)';
       this.context.fillRect(this.particles[i].pos.x, this.particles[i].pos.y,2,2);*/
    
@@ -188,6 +201,7 @@ StreetData.prototype.drawNearby = function(point, rad){
 
         if(vec.distance(point, nodes[id].coords) < rad) {
             var node = nodes[id];
+            console.log(node.name);
             for(var i = 0; i < 1; i++){
              var arr = [];
              arr.push(node.coords);
@@ -211,8 +225,8 @@ StreetData.prototype.drawNearby = function(point, rad){
 
 StreetData.prototype.getRandomPath = function(links, nodes, steps, jitter){
     if(steps==0) return nodes;
-    var rand = this.nodes[links[Math.floor(Math.random()*links.length)]];
-    var randCoords = {x: rand.coords.x+jitter*2*Math.random()-jitter, y: rand.coords.y+jitter*2*Math.random()-jitter}
+    var rand = links[Math.floor(Math.random()*links.length)];
+    var randCoords = {x: rand.coords.x+jitter*2*Math.random()-jitter, y: rand.coords.y+jitter*2*Math.random()-jitter};
     nodes.push(randCoords);
    // console.log(nodes);
     return this.getRandomPath(rand.links, nodes, steps-1, jitter);
@@ -250,7 +264,7 @@ StreetData.prototype.drawPath = function(src, dest){
 
 StreetData.prototype.drawBranch = function(node){
     for(var i = 0; i < node.links.length; i++){
-      var next = this.nodes[node.links[i]];
+      var next = node.links[i];
       this.drawPath(node.coords, next.coords);
     }
 }
