@@ -12,9 +12,12 @@ var MenuBar = React.createClass({
       this.refs.standardDialog.show();
     },
     handleSubmit: function(){
+       this.refs.standardDialog.dismiss();
       console.log("submit called");
+      this.props.showLoading();
     },
       handleCancel: function(){
+        this.refs.standardDialog.dismiss();
       console.log("cancel called");
     },
     render: function(){
@@ -23,7 +26,7 @@ var MenuBar = React.createClass({
           { text: 'Use this location', onTouchTap: this.handleSubmit, ref: 'submit' }
        ];*/
        var actions = [
-           <MapLocator updateStreets={this.props.updateStreets}/>
+           <MapLocator updateStreets={this.props.updateStreets} loadData={this.handleSubmit} handleCancel={this.handleCancel}/>
        ];
 
       	return (

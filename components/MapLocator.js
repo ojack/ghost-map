@@ -9,7 +9,7 @@ var RaisedButton = mui.RaisedButton;
 
 var MapLocator = React.createClass({
            
-      getInitialState: function() {
+    getInitialState: function() {
       	return { location: {
       		display_name: "New York",
       		lat: "40.7305991",
@@ -25,6 +25,7 @@ var MapLocator = React.createClass({
 	getOSMdata: function(){
 		console.log("button clicked");
 		var bounds = this.refs.map.getBounds();
+		this.props.loadData();
 		OSMquery.getWays(bounds, function(err, data){
 			if(err){
 				console.log(err);
@@ -38,17 +39,18 @@ var MapLocator = React.createClass({
 	render: function(){
 		return (
 			<div>
+					<div className = "grid">
+						 <SearchBox setLocation={this.setLocation}/>
+					</div>
                         <div className="grid">
                               <LeafletMap ref="map" lat={this.state.location.lat} lon={this.state.location.lon}/>
                         </div>
 
                   <div className="grid">
-      			   <SearchBox setLocation={this.setLocation}/>
-                        <div className='unit one-quarter'>
+                  			 <RaisedButton label="Cancel" primary={true} onTouchTap={this.props.handleCancel} />
                               <RaisedButton label="Load" primary={true} onTouchTap={this.getOSMdata} />
-                        </div>
-			</div>
-                  </div>
+				</div>
+             </div>
   );
 	}
 });

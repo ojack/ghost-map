@@ -5,11 +5,14 @@ var framecount = 0;
 var vec = require('../utils/Vector.js');
 var Particle = require('../utils/Particle.js');
 
-var StreetData = function (data, bounds, canvas){
+var StreetData = function (data, bounds, canvas, streetName){
   console.log("init street data ");
   this.width = canvas.width;
   this.height = canvas.height;
   this.canvas = canvas;
+  streetName.innerHTML = '';
+  this.name = streetName;
+  
   this.currentAnimations = [];
   //this.bounds = {ne: this.toScreenCoords([bounds.e, bounds.n]), this.toScreenCoords([bounds.w, bounds.s])};
   //way to apply function to all values in object?
@@ -27,7 +30,7 @@ var StreetData = function (data, bounds, canvas){
   this.context.strokeStyle = '#fff';
   this.context.rect(0,0, canvas.width, canvas.height);
   this.context.fill();
-  console.log(this.context);
+ // console.log(this.context);
   this.parseData(data);
   
 };
@@ -201,7 +204,8 @@ StreetData.prototype.drawNearby = function(point, rad){
 
         if(vec.distance(point, nodes[id].coords) < rad) {
             var node = nodes[id];
-            console.log(node.name);
+            if(node.name!=undefined) this.name.innerHTML = node.name;
+           // console.log(node.name);
             for(var i = 0; i < 1; i++){
              var arr = [];
              arr.push(node.coords);

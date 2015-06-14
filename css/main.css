@@ -1,8 +1,12 @@
 html, body{
 	background-color: #303030;
+	float: center;
+	color: #fff;
 }
 #map { 
 	height: 40%;
+	width: 40%;
+	
 	/*width: 90%;
 	height: 30%;*/
 	
@@ -16,5 +20,34 @@ html, body{
 }
 
 #canvas {
-	z-index: 100;
+	cursor: crosshair;
+	position: absolute;
+	top: 0px;
+	left:0px;
+	/*z-index: 100;*/
+}
+
+.progress{
+	position: absolute;
+	/*background-color: #f00;*/
+	position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+	z-index: 200;
+	color: #fff;
+}
+
+#streetName{
+	position: absolute;
+	z-index: 10;
+	top: 0px;
+	right: 0px;
+	opacity: 0.8;
+	margin: 10px;
+}
+
+.hidden{
+	background-color: #f00;
 }
