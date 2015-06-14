@@ -159,11 +159,12 @@ StreetData.prototype.drawNearby = function(point, rad){
 from that node*/
 StreetData.prototype.getRandomPath = function(links, coords, steps, jitter){
     if(steps==0) return coords;
-    var rand = links[Math.floor(Math.random()*links.length)];
+    //choose one of the connected nodes at random
+    var randNode = links[Math.floor(Math.random()*links.length)];
     //deviate slightly from actual path to create sketchy effect
-    var randCoords = {x: rand.coords.x+jitter*2*Math.random()-jitter, y: rand.coords.y+jitter*2*Math.random()-jitter};
+    var randCoords = {x: randNode.coords.x+jitter*2*Math.random()-jitter, y: randNode.coords.y+jitter*2*Math.random()-jitter};
     coords.push(randCoords);
-    return this.getRandomPath(rand.links, coords, steps-1, jitter);
+    return this.getRandomPath(randNode.links, coords, steps-1, jitter);
 }
 
 //draw an individual path
