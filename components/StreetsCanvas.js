@@ -7,6 +7,7 @@ var StreetsCanvas = React.createClass({
 		//console.log(this.props);
 		this.canvas = this.refs.canvas.getDOMNode();
 		this.isDrawing = false;
+		this.continuousDrawing = false;
     	//console.log(this.props.data);
     	console.log("called component did mount");
     	if(this.props.bounds){
@@ -20,23 +21,31 @@ var StreetsCanvas = React.createClass({
 		this.canvas.width = window.innerWidth;
 		this.canvas.height = window.innerHeight;
 		this.streets.updateDimensions(window.innerWidth, window.innerHeight);
-		//console.log("window resize");
-		console.log(this.canvas);
 	},
 	onMouseDown: function(e){
+		console.log(e.button);
 		e.preventDefault();
 		this.streets.startDrawing({x: e.pageX, y: e.pageY});
 		this.isDrawing = true;
+		//right or middle click starts continuous drawing mode
+		if(e.button == 0){
+			this.continuousDrawing = false;
+		} else {
+			this.continuousDrawing = true;
+		}	
+		
 	},
 	onMouseMove: function(e){
 		e.preventDefault();
-	//	if(this.isDrawing){
+		if(this.isDrawing){
 			this.streets.drawNearby({x: e.pageX, y: e.pageY}, 8);
-		//}
+		}
 	},
 	onMouseUp: function(e){
 		e.preventDefault();
-		this.isDrawing = false;
+		if(!this.continuousDrawing){
+			this.isDrawing = false;
+		}
 	},
 	drawStreets: function(){
 		this.streets.render();
@@ -57,7 +66,7 @@ var StreetsCanvas = React.createClass({
 	render: function(){
 			console.log("rerendering map");
       			return (<div>
-      				<canvas id="canvas" ref="canvas" width={window.innerWidth} height={window.innerHeight} onMouseDown = {this.onMouseDown} onMouseMove = {this.onMouseMove} onMouseUp = {this.onMouseUp}/>;
+      				<canvas id="canvas" ref="canvas" width={window.innerWidth} height={window.innerHeight} onContextMenu = {function (e) {e.preventDefault();}} onMouseDown = {this.onMouseDown} onMouseMove = {this.onMouseMove} onMouseUp = {this.onMouseUp}/>;
       				<h4 id="streetName" ref="streetName"> </h4>
       			</div>
       			);
