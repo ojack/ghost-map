@@ -4,6 +4,7 @@ html, body{
 	color: #fff;
 	font-family: 'Anonymous Pro', monospace;
 	overflow: hidden;
+	
 }
 
 #map { 
@@ -33,7 +34,7 @@ html, body{
 
 #canvas {
 	cursor: crosshair;
-	position: absolute;
+	position: fixed;
 	top: 0px;
 	left: 0px;
 	/*z-index: 100;*/
