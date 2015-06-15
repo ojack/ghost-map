@@ -55,7 +55,7 @@ var SearchBox = React.createClass({
       		},
       		//Use open street map nominatim to geolocate a point.
       		getJSON: function(query, callback){
-      			var url = "http://nominatim.openstreetmap.org/?format=json&q="+query+"&format=json&limit=1";
+      			var url = "https://nominatim.openstreetmap.org/?format=json&q="+query+"&format=json&limit=1";
       			request({method:'GET', url:url, json:true}, callback);
 			 }
       	});
