@@ -96,7 +96,7 @@ StreetData.prototype.render = function(){
   this.context.fillRect(0,0, this.width, this.height);
 }
  var hue = this.particles.length+180;
- this.context.strokeStyle = 'hsla('+hue*2+', 100%, 20%, 0.08)';
+ this.context.strokeStyle = 'hsla('+hue*2+', 100%, 20%, 0.05)';
   for(var i = this.particles.length-1; i>=0; i--){
      this.particles[i].update();
       if(this.particles[i].isDone){

@@ -6,6 +6,7 @@ var injectTapEventPlugin = require('react-tap-event-plugin');
 injectTapEventPlugin();
 var json = require('../utils/start-data.json')
 
+var customTheme = require('../utils/map-theme.js')
 /* mui theme */
 var mui = require('material-ui');
 var CircularProgress= mui.CircularProgress;
@@ -13,15 +14,20 @@ var ThemeManager = new mui.Styles.ThemeManager();
 var Colors = mui.Styles.Colors;
 
 //var StreetData = require('../utils/StreetData.js');
-ThemeManager.setTheme(ThemeManager.types.DARK);
+//ThemeManager.setTheme(ThemeManager.types.MAP);
+ThemeManager.setTheme(customTheme);
 
 var App = React.createClass({
 			  childContextTypes: {
-    muiTheme: React.PropTypes.object
+    //muiTheme: React.PropTypes.object
+    muiTheme: customTheme
   },
 
   getChildContext: function() {
+    var theme = ThemeManager.getCurrentTheme();
+   theme.contentFontFamily =  "Roboto, sans-serif"
     return {
+     // muiTheme: customTheme
       muiTheme: ThemeManager.getCurrentTheme()
     };
   },

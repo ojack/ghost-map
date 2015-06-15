@@ -16,10 +16,14 @@ var React = require('react');
 					    accessToken: 'pk.eyJ1Ijoib2oiLCJhIjoiSEw0cDJaNCJ9.9ffK1AU2O26zvS5Zsa6eqw'
 				}).addTo(map);
 
-      			
+      			map.on('moveend', this.onMapMove);
 
       			this.map = map;
       		},
+          onMapMove:function(){
+              var center = this.map.getCenter();
+              this.props.onMapMove(center);
+          },
           getBounds: function(){
             var bounds = this.map.getBounds();
             var s = bounds._southWest.lat;

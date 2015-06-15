@@ -2,33 +2,41 @@ html, body{
 	background-color: #303030;
 	float: center;
 	color: #fff;
+	font-family: 'Anonymous Pro', monospace;
 }
 #map { 
 	height: 40%;
-	width: 40%;
-	
-	/*width: 90%;
+	width: 50%;
+	/*position: fixed;*/
+  left: 50%;
+  transform: translate(-50%, 0%);
+  margin-bottom: 10px;
+	/*width: 0%;
 	height: 30%;*/
 	
+}
+
+#load-button{
+	width: 50%;
 }
 
 #menu {
 	z-index: 20;
 	position: absolute;
 	bottom: 0px;
-	left: 0px;
+	left: -10px;
 }
 
 #canvas {
 	cursor: crosshair;
 	position: absolute;
 	top: 0px;
-	left:0px;
+	left: 0px;
 	/*z-index: 100;*/
 }
 
 .progress{
-	position: absolute;
+	
 	/*background-color: #f00;*/
 	position: fixed;
   top: 50%;
@@ -42,10 +50,11 @@ html, body{
 #streetName{
 	position: absolute;
 	z-index: 10;
-	top: 0px;
-	right: 0px;
+	bottom: 12px;
+	left: 60px;
 	opacity: 0.8;
 	margin: 10px;
+	font-size:16px;
 }
 
 .hidden{

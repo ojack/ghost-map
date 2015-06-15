@@ -13,15 +13,16 @@ var SearchBox = React.createClass({
 				return { value: '', errorText: '' };
 			},
       		render: function(){
+            var style = {
+              fontFamily: 'Anonymous Pro, monospace'
+            };
+            /* <div className="unit one-quarter">
+                   <FlatButton style={style} secondary={true} label="Search" onTouchTap={this.searchLocation}/>
+                  </div>*/
       			return  (
-      				<div className="unit three-quarters grid">
-                  <div className="unit three-quarters">
-          				  <TextField  hintText="Search location..." errorText={this.state.errorText} id="step-map-geocode"  value={this.state.searchString} onChange={this.handleChange} onKeyUp={this.handleKeyUp}/>
+                  <div className="unit whole">
+          				  <TextField style={style} hintText="Search location..." errorText={this.state.errorText} id="step-map-geocode"  value={this.state.searchString} onChange={this.handleChange} onKeyUp={this.handleKeyUp}/>
                   </div>
-                  <div className="unit one-quarter">
-                   <FlatButton secondary={true} label="Search" onTouchTap={this.searchLocation}/>
-                  </div>
-       				 </div>
        			)
       		},
           searchLocation: function(){
