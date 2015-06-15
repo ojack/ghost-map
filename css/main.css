@@ -1,0 +1,62 @@
+html, body{
+	background-color: #303030;
+	float: center;
+	color: #fff;
+	font-family: 'Anonymous Pro', monospace;
+}
+#map { 
+	height: 40%;
+	width: 50%;
+	/*position: fixed;*/
+  left: 50%;
+  transform: translate(-50%, 0%);
+  margin-bottom: 10px;
+	/*width: 0%;
+	height: 30%;*/
+	
+}
+
+#load-button{
+	width: 50%;
+}
+
+#menu {
+	z-index: 20;
+	position: absolute;
+	bottom: 0px;
+	left: -10px;
+}
+
+#canvas {
+	cursor: crosshair;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	/*z-index: 100;*/
+}
+
+.progress{
+	
+	/*background-color: #f00;*/
+	position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+	z-index: 200;
+	color: #fff;
+}
+
+#streetName{
+	position: absolute;
+	z-index: 10;
+	bottom: 12px;
+	left: 60px;
+	opacity: 0.8;
+	margin: 10px;
+	font-size:16px;
+}
+
+.hidden{
+	background-color: #f00;
+}
