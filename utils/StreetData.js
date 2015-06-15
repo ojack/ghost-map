@@ -15,7 +15,6 @@ var StreetData = function (data, bounds, canvas, streetName){
   this.currentAnimations = [];
   this.bounds = {n: this.toScreenY(bounds.n), w: this.toScreenX(bounds.w), s:this.toScreenY(bounds.s), e:this.toScreenX(bounds.e)}
   this.nodes = {};
-  this.prevmouse = {}; 
   this.particles = [];
   this.context = this.canvas.getContext('2d');
   this.context.fillStyle = '#000';
@@ -121,14 +120,12 @@ StreetData.prototype.render = function(){
 }
 
 StreetData.prototype.startDrawing = function(point){
-  this.prevmouse = point;
   this.drawNearby(point, 30);
 }
   
 
 
 StreetData.prototype.drawNearby = function(point, rad){
-    var d = vec.distance(point, this.prevmouse);
    var jit = 2;
    var speed = 0.15 + d*0.002;
     var nodes = this.nodes;

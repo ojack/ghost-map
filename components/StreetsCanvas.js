@@ -1,5 +1,5 @@
 var React = require('react');
-
+React.initializeTouchEvents(true);
 var StreetData = require('../utils/StreetData.js');
 
 var StreetsCanvas = React.createClass({
@@ -47,6 +47,19 @@ var StreetsCanvas = React.createClass({
 			this.isDrawing = false;
 		}
 	},
+	onTouchStart: function(e){
+		for(var i = 0; i < e.changedTouches.length; i++){
+			this.streets.drawNearby(e.changedTouches[i].clientX, e.changedTouches[i].clientY, 5);
+		}
+	},
+	onTouchMove: function(e){
+		for(var i = 0; i < e.changedTouches.length; i++){
+			this.streets.drawNearby(e.changedTouches[i].clientX, event.changedTouches[i].clientY, 5);
+		}
+	},
+	onTouchEnd: function(e){
+
+	},
 	drawStreets: function(){
 		this.streets.render();
 		window.requestAnimationFrame(this.drawStreets);
@@ -66,7 +79,7 @@ var StreetsCanvas = React.createClass({
 	render: function(){
 			console.log("rerendering map");
       			return (<div>
-      				<canvas id="canvas" ref="canvas" width={window.innerWidth} height={window.innerHeight} onContextMenu = {function (e) {e.preventDefault();}} onMouseDown = {this.onMouseDown} onMouseMove = {this.onMouseMove} onMouseUp = {this.onMouseUp}/>;
+      				<canvas id="canvas" ref="canvas" width={window.innerWidth} height={window.innerHeight} onContextMenu = {function (e) {e.preventDefault();}} onMouseDown = {this.onMouseDown} onMouseMove = {this.onMouseMove} onMouseUp = {this.onMouseUp} onTouchStart={this.onTouchStart} onTouchMove={this.onTouchMove} onTouchEnd={this.onTouchEnd} />;
       				<h4 id="streetName" ref="streetName"> </h4>
       			</div>
       			);
