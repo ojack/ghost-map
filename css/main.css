@@ -3,7 +3,9 @@ html, body{
 	float: center;
 	color: #fff;
 	font-family: 'Anonymous Pro', monospace;
+	overflow: hidden;
 }
+
 #map { 
 	height: 40%;
 	width: 50%;
