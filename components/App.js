@@ -4,8 +4,8 @@ var MenuBar = require('./MenuBar');
 var StreetsCanvas = require('./StreetsCanvas');
 var injectTapEventPlugin = require('react-tap-event-plugin');
 injectTapEventPlugin();
-var json = require('../utils/start-data.json')
-
+//var json = require('../utils/start-data.json')
+var json = require('../utils/start-data-ny.json');
 var customTheme = require('../utils/map-theme.js')
 /* mui theme */
 var mui = require('material-ui');
@@ -58,8 +58,9 @@ var App = React.createClass({
 
 				return { 
 						data: json.elements,
-						bounds: {s: 40.72410403167141, w: -73.9972972869873, n: 40.73711228816394, e: -73.97583961486816},
-						displayName: 'New York',
+						//bounds: {s: 40.72410403167141, w: -73.9972972869873, n: 40.73711228816394, e: -73.97583961486816},
+						bounds: {s: 40.69690856450983, w: -74.0097427368164, n: 40.73386046245138, e: -73.95927429199219},
+            displayName: 'New York',
             isLoading: false,
             redrawMap: true
 					};
