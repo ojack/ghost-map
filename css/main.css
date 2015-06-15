@@ -11,6 +11,8 @@ html, body{
 	width: 50%;
 	/*position: fixed;*/
   left: 50%;
+  -ms-transform: translate(50px,100px); /* IE 9 */
+  -webkit-transform: translate(50px,100px); /* Safari */
   transform: translate(-50%, 0%);
   margin-bottom: 10px;
 	/*width: 0%;
