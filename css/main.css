@@ -54,7 +54,7 @@ html, body{
 }
 
 #streetName{
-	position: absolute;
+	position: fixed;
 	z-index: 10;
 	bottom: 12px;
 	left: 60px;
