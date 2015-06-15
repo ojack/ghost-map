@@ -45,7 +45,8 @@ html, body{
 	position: fixed;
   top: 50%;
   left: 50%;
-  /* bring your own prefixes */
+   -ms-transform: translate(-50%, -50%);/* IE 9 */
+  -webkit-transform: translate(-50%, -50%); /* Safari */
   transform: translate(-50%, -50%);
 	z-index: 200;
 	color: #fff;
