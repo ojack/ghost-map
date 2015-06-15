@@ -1,5 +1,5 @@
 var React = require('react');
-React.initializeTouchEvents(true);
+
 var StreetData = require('../utils/StreetData.js');
 
 var StreetsCanvas = React.createClass({
@@ -48,13 +48,19 @@ var StreetsCanvas = React.createClass({
 		}
 	},
 	onTouchStart: function(e){
+		e.preventDefault();
+		//console.log("touch start");
 		for(var i = 0; i < e.changedTouches.length; i++){
-			this.streets.drawNearby(e.changedTouches[i].clientX, e.changedTouches[i].clientY, 5);
+			this.streets.drawNearby({x: e.changedTouches[i].clientX, y: e.changedTouches[i].clientY}, 6);
 		}
 	},
 	onTouchMove: function(e){
-		for(var i = 0; i < e.changedTouches.length; i++){
-			this.streets.drawNearby(e.changedTouches[i].clientX, event.changedTouches[i].clientY, 5);
+		e.preventDefault();
+		//console.log("touch move");
+		//console.log(e.changedTouches);
+		for(var i = 0; i < e.touches.length; i++){
+			//console.log("drawing "+ e.touches[i].clientX);
+			this.streets.drawNearby({x: e.touches[i].clientX, y: event.touches[i].clientY}, 4);
 		}
 	},
 	onTouchEnd: function(e){

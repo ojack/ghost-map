@@ -127,7 +127,7 @@ StreetData.prototype.startDrawing = function(point){
 
 StreetData.prototype.drawNearby = function(point, rad){
    var jit = 2;
-   var speed = 0.15 + d*0.002;
+   var speed = 0.25;
     var nodes = this.nodes;
     for (id in nodes) {
       if (nodes.hasOwnProperty(id)) {
