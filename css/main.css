@@ -27,7 +27,7 @@ html, body{
 
 #menu {
 	z-index: 20;
-	position: absolute;
+	position: fixed;
 	bottom: 0px;
 	left: -10px;
 }
@@ -43,7 +43,7 @@ html, body{
 .progress{
 	
 	/*background-color: #f00;*/
-	position: fixed;
+position: fixed;
   top: 50%;
   left: 50%;
    -ms-transform: translate(-50%, -50%);/* IE 9 */
