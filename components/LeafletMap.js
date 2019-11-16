@@ -30,9 +30,10 @@ var React = require('react');
             var simpleBounds = {"s": bounds._southWest.lat, "w":bounds._southWest.lng, "n":bounds._northEast.lat, "e":bounds._northEast.lng};
             return simpleBounds;
           },
-      		componentWillReceiveProps: function(nextProps) {
-    			 this.map.panTo([nextProps.lat, nextProps.lon]);
-  			}, 
+					shouldComponentUpdate: function(nextProps){
+						this.map.panTo([nextProps.lat, nextProps.lon]);
+						return true;
+					},
       		render: function(){
       			return <div id='map' className='unit whole'/>;
       		}
