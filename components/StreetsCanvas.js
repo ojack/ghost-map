@@ -70,18 +70,13 @@ var StreetsCanvas = React.createClass({
 		this.streets.render();
 		window.requestAnimationFrame(this.drawStreets);
 	},
-	componentWillReceiveProps: function(nextProps) {
-		console.log("called will recieve props");
-		if(nextProps.redrawMap){
-    		var streets = new StreetData(nextProps.data, nextProps.bounds, this.canvas, this.refs.streetName.getDOMNode());
-			this.streets = streets;
-		}
-  	}, 
-  	//how does this work? appears to not do anything
-  	shouldComponentUpdate: function(nextProps, nextState){
-  		console.log("saying no to update");
-  		return false;
-  	},
+
+	shouldComponentUpdate: function(nextProps){
+		var streets = new StreetData(nextProps.data, nextProps.bounds, this.canvas, this.refs.streetName.getDOMNode());
+		this.streets = streets;
+		return true;
+	},
+
 	render: function(){
 			console.log("rerendering map");
       			return (<div>
